@@ -11,3 +11,8 @@ description = "Movie planning and rating application"
 managed = true
 
 [tool.uv.sources]
+
+[tool.uv.workspace]
+members = [
+    "backend",
+]
