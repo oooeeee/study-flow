@@ -11,10 +11,16 @@ function App() {
     <div>
       <h1>Movie Planner</h1>
       <nav>
-        <button onClick={() => setTab('watchlist')} aria-current={tab === 'watchlist' ? 'page' : undefined}>
+        <button
+          onClick={() => setTab('watchlist')}
+          aria-current={tab === 'watchlist' ? 'page' : undefined}
+        >
           Watchlist
         </button>
-        <button onClick={() => setTab('watched')} aria-current={tab === 'watched' ? 'page' : undefined}>
+        <button
+          onClick={() => setTab('watched')}
+          aria-current={tab === 'watched' ? 'page' : undefined}
+        >
           Watched
         </button>
       </nav>

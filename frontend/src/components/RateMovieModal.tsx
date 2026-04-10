@@ -36,11 +36,7 @@ export function RateMovieModal({ movieId, onSave, onCancel }: RateMovieModalProp
         onChange={(e) => setRating(Number(e.target.value))}
       />
       <label htmlFor="review">Review (optional)</label>
-      <textarea
-        id="review"
-        value={review}
-        onChange={(e) => setReview(e.target.value)}
-      />
+      <textarea id="review" value={review} onChange={(e) => setReview(e.target.value)} />
       <button onClick={handleSave} disabled={saving}>
         Save
       </button>

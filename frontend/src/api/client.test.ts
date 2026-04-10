@@ -35,7 +35,10 @@ describe('addMovie', () => {
     const result = await addMovie({ title: 'Inception', year: 2010 })
 
     expect(fetch).toHaveBeenCalledOnce()
-    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [string, RequestInit]
+    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [
+      string,
+      RequestInit,
+    ]
     expect(url).toContain('/movies')
     expect(options.method).toBe('POST')
     expect(JSON.parse(options.body as string)).toEqual({ title: 'Inception', year: 2010 })
@@ -74,7 +77,10 @@ describe('markWatched', () => {
     global.fetch = mockFetch(mockMovie)
     await markWatched('abc-123')
 
-    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [string, RequestInit]
+    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [
+      string,
+      RequestInit,
+    ]
     expect(url).toContain('/movies/abc-123/watch')
     expect(options.method).toBe('PATCH')
   })
@@ -85,7 +91,10 @@ describe('rateMovie', () => {
     global.fetch = mockFetch(mockMovie)
     await rateMovie('abc-123', { rating: 8, review: 'Great film' })
 
-    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [string, RequestInit]
+    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [
+      string,
+      RequestInit,
+    ]
     expect(url).toContain('/movies/abc-123/rate')
     expect(options.method).toBe('PATCH')
     expect(JSON.parse(options.body as string)).toEqual({ rating: 8, review: 'Great film' })
@@ -105,7 +114,10 @@ describe('deleteMovie', () => {
     global.fetch = mockFetch(null)
     await deleteMovie('abc-123')
 
-    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [string, RequestInit]
+    const [url, options] = (fetch as ReturnType<typeof vi.fn>).mock.calls[0] as [
+      string,
+      RequestInit,
+    ]
     expect(url).toContain('/movies/abc-123')
     expect(options.method).toBe('DELETE')
   })
