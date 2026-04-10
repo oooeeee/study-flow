@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "study-flow"
+version = "0.1.0"
+description = "Movie planning and rating application"
+
+[tool.setuptools]
+packages = []
+
+[tool.uv]
+managed = true
+
+[tool.uv.sources]
+
+[tool.uv.workspace]
+members = [
+    "backend",
+]
