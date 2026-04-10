@@ -5,7 +5,7 @@ const getApiUrl = () => import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const apiCall = async (
   method: string,
   path: string,
-  body?: Record<string, unknown>
+  body?: object
 ): Promise<unknown> => {
   const url = `${getApiUrl()}${path}`;
   const options: RequestInit = {
