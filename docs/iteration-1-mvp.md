@@ -56,8 +56,13 @@ A minimal app where users can plan movies they want to watch and rate movies the
 ### Infrastructure
 - **Deployment:** Docker Compose
   - `backend` service — FastAPI app
-  - `frontend` service — TypeScript web app
+  - `frontend` service — TypeScript web app (React + Vite)
   - SQLite database file mounted as a named volume so data survives container restarts
+- **Python dependency manager:** uv
+- **Ignore files:** `.gitignore` and `.dockerignore` at repo root and in each service directory
+- **Pre-commit hooks:**
+  - Python: `ruff` (linting + formatting)
+  - TypeScript: `eslint` + `prettier`
 
 ## Docker Compose Layout
 
