@@ -140,11 +140,11 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 10: Frontend — Watched list view
 
-- [ ] create `frontend/src/components/WatchedItem.tsx` — shows title/year, rating (stars or number), review text
-- [ ] create `frontend/src/pages/WatchedPage.tsx` — fetches `?status=watched`, renders list sorted by `watched_at` desc
-- [ ] add simple tab/nav between Watchlist and Watched pages in `App.tsx`
-- [ ] write component tests: list renders items with rating; empty state message when no watched movies
-- [ ] run `npm run test` — must pass
+- [x] create `frontend/src/components/WatchedItem.tsx` — shows title/year, rating (stars or number), review text
+- [x] create `frontend/src/pages/WatchedPage.tsx` — fetches `?status=watched`, renders list sorted by `watched_at` desc
+- [x] add simple tab/nav between Watchlist and Watched pages in `App.tsx`
+- [x] write component tests: list renders items with rating; empty state message when no watched movies
+- [x] run `npm run test` — must pass
 
 ---
 
