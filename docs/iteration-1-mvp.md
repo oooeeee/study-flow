@@ -46,6 +46,7 @@ A minimal app where users can plan movies they want to watch and rate movies the
 ### Backend
 - **Language:** Python 3.13
 - **Framework:** FastAPI
+- **Data validation:** Pydantic v2 (request/response schemas, settings)
 - **API docs:** Swagger UI (auto-generated via FastAPI at `/docs`)
 - **Database:** SQLite (persisted via a Docker volume)
 

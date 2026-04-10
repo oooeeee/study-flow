@@ -53,7 +53,7 @@ SQLite (database), all wired together with Docker Compose.
 ### Task 2: Backend — project setup with uv + FastAPI skeleton
 
 - [ ] create `backend/` directory; run `uv init` inside it (Python 3.13)
-- [ ] add dependencies: `fastapi`, `uvicorn[standard]`, `sqlmodel`, `python-multipart`
+- [ ] add dependencies: `fastapi`, `uvicorn[standard]`, `sqlmodel`, `pydantic>=2`, `pydantic-settings`, `python-multipart`
 - [ ] add dev dependencies: `pytest`, `httpx`, `ruff`
 - [ ] create `backend/app/__init__.py` and `backend/app/main.py` with a minimal FastAPI app (`GET /health` → `{"status": "ok"}`)
 - [ ] create `backend/Dockerfile` (Python 3.13-slim, uv sync, `uvicorn app.main:app --host 0.0.0.0 --port 8000`)
@@ -65,7 +65,8 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 3: Backend — SQLite database & Movie model
 
-- [ ] create `backend/app/database.py`: SQLModel engine pointing to `/app/data/movies.db`; `create_db_and_tables()` called on startup
+- [ ] create `backend/app/config.py`: Pydantic `BaseSettings` class with `db_path` (default `/app/data/movies.db`) and `app_env` fields — reads from env vars automatically
+- [ ] create `backend/app/database.py`: SQLModel engine built from `settings.db_path`; `create_db_and_tables()` called on startup
 - [ ] create `backend/app/models.py`: `MovieStatus` enum (`planned`/`watched`) and `Movie` SQLModel table with all fields from the MVP data model
 - [ ] wire `create_db_and_tables()` into FastAPI `lifespan` in `main.py`
 - [ ] write test: DB creates the `movie` table and a `Movie` instance can be inserted and retrieved
@@ -81,7 +82,7 @@ SQLite (database), all wired together with Docker Compose.
   - `PATCH /movies/{id}/watch` — mark as watched (sets `status`, `watched_at`)
   - `PATCH /movies/{id}/rate` — set rating (1–10) + optional review
   - `DELETE /movies/{id}` — remove movie
-- [ ] create Pydantic request/response schemas in `backend/app/schemas.py`
+- [ ] create Pydantic v2 request/response schemas in `backend/app/schemas.py` (`BaseModel` subclasses for `MovieCreate`, `MovieRead`, `WatchRequest`, `RateRequest`); use `model_config = ConfigDict(from_attributes=True)` for ORM compatibility
 - [ ] register router in `main.py`; confirm Swagger UI shows all routes at `/docs`
 - [ ] write tests for each endpoint (success + error cases: 404, invalid rating, etc.)
 - [ ] run `uv run pytest` — must pass
