@@ -171,8 +171,8 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 13: [Final] Update documentation
 
-- [ ] update root `README.md`: prerequisites, `docker compose up` quickstart, URLs (app, Swagger), dev setup for backend and frontend
-- [ ] verify `docs/iteration-1-mvp.md` matches what was actually built; update if anything changed
+- [x] update root `README.md`: prerequisites, `docker compose up` quickstart, URLs (app, Swagger), dev setup for backend and frontend
+- [x] verify `docs/iteration-1-mvp.md` matches what was actually built; update if anything changed
 
 ---
 
