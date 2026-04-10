@@ -2,7 +2,9 @@ from sqlmodel import SQLModel, create_engine
 
 from app.config import settings
 
-engine = create_engine(f"sqlite:///{settings.db_path}", connect_args={"check_same_thread": False})
+engine = create_engine(
+    f"sqlite:///{settings.db_path}", connect_args={"check_same_thread": False}
+)
 
 
 def create_db_and_tables() -> None:

@@ -3,11 +3,10 @@ import tempfile
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import Session, SQLModel, create_engine
+from sqlmodel import SQLModel, create_engine
 
-from app.main import app
-from app.models import Movie, MovieStatus
 import app.routers.movies as movies_router_module
+from app.main import app
 
 
 @pytest.fixture(autouse=True)
@@ -36,6 +35,7 @@ def client():
 
 # ── POST /movies ──────────────────────────────────────────────────────────────
 
+
 def test_add_movie_minimal(client):
     resp = client.post("/movies", json={"title": "Inception"})
     assert resp.status_code == 201
@@ -57,6 +57,7 @@ def test_add_movie_missing_title(client):
 
 
 # ── GET /movies ───────────────────────────────────────────────────────────────
+
 
 def test_list_movies_empty(client):
     resp = client.get("/movies")
@@ -95,6 +96,7 @@ def test_list_movies_filter_watched(client):
 
 # ── PATCH /movies/{id}/watch ──────────────────────────────────────────────────
 
+
 def test_mark_watched(client):
     add_resp = client.post("/movies", json={"title": "Interstellar"})
     movie_id = add_resp.json()["id"]
@@ -113,11 +115,14 @@ def test_mark_watched_not_found(client):
 
 # ── PATCH /movies/{id}/rate ───────────────────────────────────────────────────
 
+
 def test_rate_movie(client):
     add_resp = client.post("/movies", json={"title": "Matrix"})
     movie_id = add_resp.json()["id"]
 
-    resp = client.patch(f"/movies/{movie_id}/rate", json={"rating": 9, "review": "Great"})
+    resp = client.patch(
+        f"/movies/{movie_id}/rate", json={"rating": 9, "review": "Great"}
+    )
     assert resp.status_code == 200
     data = resp.json()
     assert data["rating"] == 9
@@ -155,6 +160,7 @@ def test_rate_movie_not_found(client):
 
 
 # ── DELETE /movies/{id} ───────────────────────────────────────────────────────
+
 
 def test_delete_movie(client):
     add_resp = client.post("/movies", json={"title": "Delete Me"})

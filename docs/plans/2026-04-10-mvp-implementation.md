@@ -99,14 +99,14 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 6: Frontend — project setup (React + Vite + TypeScript)
 
-- [ ] scaffold `frontend/` with `npm create vite@latest . -- --template react-ts`
-- [ ] install deps: `npm install`
-- [ ] add dev deps: `eslint`, `prettier`, `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`, `eslint-config-prettier`, `vitest`, `@testing-library/react`, `@testing-library/jest-dom`
-- [ ] create `frontend/.eslintrc.cjs` (TypeScript + prettier rules) and `frontend/.prettierrc`
-- [ ] create `frontend/.dockerignore` (`node_modules`, `dist`, `.env`)
-- [ ] create `frontend/Dockerfile` (node:20-alpine, `npm ci`, `npm run build`, serve with `serve -s dist`)
-- [ ] write a smoke test: `App` component renders without crashing
-- [ ] run `npm run test` — must pass
+- [x] scaffold `frontend/` with `npm create vite@latest . -- --template react-ts`
+- [x] install deps: `npm install`
+- [x] add dev deps: `eslint`, `prettier`, `@typescript-eslint/eslint-plugin`, `@typescript-eslint/parser`, `eslint-config-prettier`, `vitest`, `@testing-library/react`, `@testing-library/jest-dom`
+- [x] create `frontend/eslint.config.js` (TypeScript + prettier rules, ESLint 9 flat config) and `frontend/.prettierrc`
+- [x] create `frontend/.dockerignore` (`node_modules`, `dist`, `.env`)
+- [x] create `frontend/Dockerfile` (node:20-alpine, `npm ci`, `npm run build`, serve with `serve -s dist`)
+- [x] write a smoke test: `App` component renders without crashing
+- [x] run `npm run test` — must pass
 
 ---
 
