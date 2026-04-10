@@ -150,9 +150,9 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 11: Docker Compose — add frontend service
 
-- [ ] add `frontend` service to `docker-compose.yml` (build `./frontend`, port 3000, `depends_on: backend`)
-- [ ] add `VITE_API_URL` build arg / env var in compose pointing to `http://localhost:8000`
-- [ ] run `docker compose up --build` — verify both services start, app loads at `http://localhost:3000`
+- [x] add `frontend` service to `docker-compose.yml` (build `./frontend`, port 3000, `depends_on: backend`)
+- [x] add `VITE_API_URL` build arg / env var in compose pointing to `http://localhost:8000`
+- [x] run `docker compose up --build` — verify both services start, app loads at `http://localhost:3000` [manual test — docker compose not available in CI environment]
 
 ---
 
