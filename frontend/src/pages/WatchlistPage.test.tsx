@@ -54,7 +54,9 @@ describe("WatchlistPage", () => {
     render(<WatchlistPage onMarkWatched={onMarkWatched} />);
 
     await waitFor(() => {
-      expect(screen.getByText("No movies in watchlist yet.")).toBeInTheDocument();
+      expect(
+        screen.getByText("No movies in watchlist yet."),
+      ).toBeInTheDocument();
     });
   });
 
@@ -74,10 +76,14 @@ describe("WatchlistPage", () => {
     render(<WatchlistPage onMarkWatched={onMarkWatched} />);
 
     await waitFor(() => {
-      expect(screen.getAllByRole("button", { name: "Mark as watched" })).toHaveLength(2);
+      expect(
+        screen.getAllByRole("button", { name: "Mark as watched" }),
+      ).toHaveLength(2);
     });
 
-    fireEvent.click(screen.getAllByRole("button", { name: "Mark as watched" })[0]);
+    fireEvent.click(
+      screen.getAllByRole("button", { name: "Mark as watched" })[0],
+    );
     expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 

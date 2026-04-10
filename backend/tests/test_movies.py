@@ -36,6 +36,7 @@ def client_fixture(session: Session):
 
 # --- POST /movies ---
 
+
 def test_add_movie_success(client: TestClient):
     response = client.post("/movies", json={"title": "Inception", "year": 2010})
     assert response.status_code == 201
@@ -61,6 +62,7 @@ def test_add_movie_missing_title(client: TestClient):
 
 
 # --- GET /movies ---
+
 
 def test_list_movies_empty(client: TestClient):
     response = client.get("/movies")
@@ -110,6 +112,7 @@ def test_list_movies_invalid_status(client: TestClient):
 
 # --- PATCH /movies/{id}/watch ---
 
+
 def test_mark_watched_success(client: TestClient):
     resp = client.post("/movies", json={"title": "Matrix"})
     movie_id = resp.json()["id"]
@@ -123,17 +126,21 @@ def test_mark_watched_success(client: TestClient):
 
 def test_mark_watched_not_found(client: TestClient):
     import uuid
+
     response = client.patch(f"/movies/{uuid.uuid4()}/watch")
     assert response.status_code == 404
 
 
 # --- PATCH /movies/{id}/rate ---
 
+
 def test_rate_movie_success(client: TestClient):
     resp = client.post("/movies", json={"title": "Dune"})
     movie_id = resp.json()["id"]
 
-    response = client.patch(f"/movies/{movie_id}/rate", json={"rating": 8, "review": "Epic"})
+    response = client.patch(
+        f"/movies/{movie_id}/rate", json={"rating": 8, "review": "Epic"}
+    )
     assert response.status_code == 200
     data = response.json()
     assert data["rating"] == 8
@@ -166,6 +173,7 @@ def test_rate_movie_rating_too_high(client: TestClient):
 
 def test_rate_movie_not_found(client: TestClient):
     import uuid
+
     response = client.patch(f"/movies/{uuid.uuid4()}/rate", json={"rating": 7})
     assert response.status_code == 404
 
@@ -178,6 +186,7 @@ def test_rate_movie_missing_rating(client: TestClient):
 
 
 # --- DELETE /movies/{id} ---
+
 
 def test_delete_movie_success(client: TestClient):
     resp = client.post("/movies", json={"title": "Delete Me"})
@@ -193,5 +202,6 @@ def test_delete_movie_success(client: TestClient):
 
 def test_delete_movie_not_found(client: TestClient):
     import uuid
+
     response = client.delete(f"/movies/{uuid.uuid4()}")
     assert response.status_code == 404

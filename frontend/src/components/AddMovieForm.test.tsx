@@ -16,7 +16,9 @@ describe("AddMovieForm", () => {
     render(<AddMovieForm onAdded={onAdded} />);
     expect(screen.getByLabelText("Title")).toBeInTheDocument();
     expect(screen.getByLabelText("Year")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Add Movie" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Add Movie" }),
+    ).toBeInTheDocument();
   });
 
   it("calls addMovie with title on submit and clears form", async () => {
@@ -66,7 +68,10 @@ describe("AddMovieForm", () => {
     fireEvent.click(screen.getByRole("button", { name: "Add Movie" }));
 
     await waitFor(() => {
-      expect(client.addMovie).toHaveBeenCalledWith({ title: "Dune", year: 2021 });
+      expect(client.addMovie).toHaveBeenCalledWith({
+        title: "Dune",
+        year: 2021,
+      });
     });
   });
 

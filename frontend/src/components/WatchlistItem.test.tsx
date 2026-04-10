@@ -48,7 +48,10 @@ describe("WatchlistItem", () => {
 
   it("calls onMarkWatched after modal save and closes modal", async () => {
     vi.mocked(client.markWatched).mockResolvedValue(watchedMovie);
-    vi.mocked(client.rateMovie).mockResolvedValue({ ...watchedMovie, rating: 8 });
+    vi.mocked(client.rateMovie).mockResolvedValue({
+      ...watchedMovie,
+      rating: 8,
+    });
 
     const onMarkWatched = vi.fn();
     render(<WatchlistItem movie={baseMovie} onMarkWatched={onMarkWatched} />);
