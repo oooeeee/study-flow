@@ -52,14 +52,14 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 2: Backend — project setup with uv + FastAPI skeleton
 
-- [ ] create `backend/` directory; run `uv init` inside it (Python 3.13)
-- [ ] add dependencies: `fastapi`, `uvicorn[standard]`, `sqlmodel`, `pydantic>=2`, `pydantic-settings`, `python-multipart`
-- [ ] add dev dependencies: `pytest`, `httpx`, `ruff`
-- [ ] create `backend/app/__init__.py` and `backend/app/main.py` with a minimal FastAPI app (`GET /health` → `{"status": "ok"}`)
-- [ ] create `backend/Dockerfile` (Python 3.13-slim, uv sync, `uvicorn app.main:app --host 0.0.0.0 --port 8000`)
-- [ ] create `backend/.dockerignore` (`.venv`, `__pycache__`, `*.pyc`, `tests/`, `*.db`)
-- [ ] write test: `tests/test_health.py` — GET /health returns 200
-- [ ] run `uv run pytest` — must pass
+- [x] create `backend/` directory; run `uv init` inside it (Python 3.13)
+- [x] add dependencies: `fastapi`, `uvicorn[standard]`, `sqlmodel`, `pydantic>=2`, `pydantic-settings`, `python-multipart`
+- [x] add dev dependencies: `pytest`, `httpx`, `ruff`
+- [x] create `backend/app/__init__.py` and `backend/app/main.py` with a minimal FastAPI app (`GET /health` → `{"status": "ok"}`)
+- [x] create `backend/Dockerfile` (Python 3.13-slim, uv sync, `uvicorn app.main:app --host 0.0.0.0 --port 8000`)
+- [x] create `backend/.dockerignore` (`.venv`, `__pycache__`, `*.pyc`, `tests/`, `*.db`)
+- [x] write test: `tests/test_health.py` — GET /health returns 200
+- [x] run `uv run pytest` — must pass
 
 ---
 
