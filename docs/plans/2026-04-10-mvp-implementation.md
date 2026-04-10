@@ -76,16 +76,16 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 4: Backend — CRUD API endpoints
 
-- [ ] create `backend/app/routers/movies.py` with:
+- [x] create `backend/app/routers/movies.py` with:
   - `POST /movies` — add movie (title required, year optional) → returns created movie
   - `GET /movies` — list all movies (optional `?status=planned|watched` filter)
   - `PATCH /movies/{id}/watch` — mark as watched (sets `status`, `watched_at`)
   - `PATCH /movies/{id}/rate` — set rating (1–10) + optional review
   - `DELETE /movies/{id}` — remove movie
-- [ ] create Pydantic v2 request/response schemas in `backend/app/schemas.py` (`BaseModel` subclasses for `MovieCreate`, `MovieRead`, `WatchRequest`, `RateRequest`); use `model_config = ConfigDict(from_attributes=True)` for ORM compatibility
-- [ ] register router in `main.py`; confirm Swagger UI shows all routes at `/docs`
-- [ ] write tests for each endpoint (success + error cases: 404, invalid rating, etc.)
-- [ ] run `uv run pytest` — must pass
+- [x] create Pydantic v2 request/response schemas in `backend/app/schemas.py` (`BaseModel` subclasses for `MovieCreate`, `MovieRead`, `WatchRequest`, `RateRequest`); use `model_config = ConfigDict(from_attributes=True)` for ORM compatibility
+- [x] register router in `main.py`; confirm Swagger UI shows all routes at `/docs`
+- [x] write tests for each endpoint (success + error cases: 404, invalid rating, etc.)
+- [x] run `uv run pytest` — must pass
 
 ---
 
