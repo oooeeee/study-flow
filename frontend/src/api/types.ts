@@ -1,0 +1,26 @@
+export type MovieStatus = 'planned' | 'watched';
+
+export interface Movie {
+  id: string;
+  title: string;
+  year: number | null;
+  status: MovieStatus;
+  rating: number | null;
+  review: string | null;
+  added_at: string;
+  watched_at: string | null;
+}
+
+export interface AddMovieRequest {
+  title: string;
+  year?: number | null;
+}
+
+export interface WatchRequest {
+  // empty request body
+}
+
+export interface RateRequest {
+  rating: number;
+  review?: string | null;
+}
