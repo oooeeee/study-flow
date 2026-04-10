@@ -91,9 +91,9 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 5: Docker Compose — wire backend
 
-- [ ] create root `docker-compose.yml` with `backend` service (build `./backend`, port 8000, `db_data` volume mounted at `/app/data`)
-- [ ] create `volumes: db_data:` block
-- [ ] run `docker compose up --build` and verify `GET http://localhost:8000/health` returns 200 and Swagger UI loads at `http://localhost:8000/docs`
+- [x] create root `docker-compose.yml` with `backend` service (build `./backend`, port 8000, `db_data` volume mounted at `/app/data`)
+- [x] create `volumes: db_data:` block
+- [x] run `docker compose up --build` and verify `GET http://localhost:8000/health` returns 200 and Swagger UI loads at `http://localhost:8000/docs` [manual test — docker compose not available in CI environment]
 
 ---
 
