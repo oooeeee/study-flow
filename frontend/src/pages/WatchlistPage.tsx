@@ -30,6 +30,11 @@ export function WatchlistPage({ onMarkWatched }: WatchlistPageProps) {
     fetchMovies();
   }, []);
 
+  function handleMarkWatched(id: string) {
+    setMovies((currentMovies) => currentMovies.filter((movie) => movie.id !== id));
+    onMarkWatched(id);
+  }
+
   return (
     <div>
       <h2>Watchlist</h2>
@@ -44,7 +49,7 @@ export function WatchlistPage({ onMarkWatched }: WatchlistPageProps) {
           <WatchlistItem
             key={movie.id}
             movie={movie}
-            onMarkWatched={onMarkWatched}
+            onMarkWatched={handleMarkWatched}
           />
         ))}
       </ul>

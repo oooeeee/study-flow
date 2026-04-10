@@ -115,4 +115,36 @@ describe("WatchlistPage", () => {
       expect(client.listMovies).toHaveBeenCalledTimes(2);
     });
   });
+
+  it("removes a movie from the watchlist immediately after marking it watched", async () => {
+    vi.mocked(client.listMovies).mockResolvedValue(movies);
+    vi.mocked(client.markWatched).mockResolvedValue({
+      ...movies[0],
+      status: "watched",
+      watched_at: "2024-02-01T00:00:00",
+    });
+    vi.mocked(client.rateMovie).mockResolvedValue({
+      ...movies[0],
+      status: "watched",
+      rating: 5,
+      watched_at: "2024-02-01T00:00:00",
+    });
+
+    render(<WatchlistPage onMarkWatched={onMarkWatched} />);
+
+    await waitFor(() => {
+      expect(screen.getByText("Inception (2010)")).toBeInTheDocument();
+      expect(screen.getByText("Dune (2021)")).toBeInTheDocument();
+    });
+
+    onMarkWatched.mockClear();
+    fireEvent.click(screen.getAllByRole("button", { name: "Mark as watched" })[0]);
+    fireEvent.click(screen.getByRole("button", { name: "Save" }));
+
+    await waitFor(() => {
+      expect(screen.queryByText("Inception (2010)")).not.toBeInTheDocument();
+    });
+    expect(screen.getByText("Dune (2021)")).toBeInTheDocument();
+    expect(onMarkWatched).toHaveBeenCalledWith("1");
+  });
 });
