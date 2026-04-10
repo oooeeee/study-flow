@@ -68,7 +68,7 @@ describe("WatchlistPage", () => {
     });
   });
 
-  it("calls onMarkWatched when Mark as watched button is clicked", async () => {
+  it("opens rate modal when Mark as watched button is clicked", async () => {
     vi.mocked(client.listMovies).mockResolvedValue(movies);
 
     render(<WatchlistPage onMarkWatched={onMarkWatched} />);
@@ -78,7 +78,7 @@ describe("WatchlistPage", () => {
     });
 
     fireEvent.click(screen.getAllByRole("button", { name: "Mark as watched" })[0]);
-    expect(onMarkWatched).toHaveBeenCalledWith("1");
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
   it("refetches movies after adding a new one", async () => {
