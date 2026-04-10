@@ -39,14 +39,14 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 1: Repo scaffolding — ignore files & pre-commit
 
-- [ ] create root `.gitignore` covering Python (`__pycache__`, `.venv`, `*.pyc`, `*.db`), Node (`node_modules`, `dist`), editor files, `.env`
-- [ ] create root `.dockerignore` covering `.git`, `.venv`, `node_modules`, `__pycache__`, `*.pyc`, `*.db`, `.env`, test artifacts
-- [ ] install `pre-commit` (add to dev deps) and create `.pre-commit-config.yaml`:
+- [x] create root `.gitignore` covering Python (`__pycache__`, `.venv`, `*.pyc`, `*.db`), Node (`node_modules`, `dist`), editor files, `.env`
+- [x] create root `.dockerignore` covering `.git`, `.venv`, `node_modules`, `__pycache__`, `*.pyc`, `*.db`, `.env`, test artifacts
+- [x] install `pre-commit` (add to dev deps) and create `.pre-commit-config.yaml`:
   - ruff hook (lint + format) for `backend/`
   - eslint hook for `frontend/`
   - prettier hook for `frontend/`
-- [ ] run `pre-commit install` to verify config is valid
-- [ ] commit scaffold — clean working tree
+- [x] run `pre-commit install` to verify config is valid
+- [x] commit scaffold — clean working tree
 
 ---
 
