@@ -4,11 +4,7 @@ import type { Movie } from '../api/types'
 import { AddMovieForm } from '../components/AddMovieForm'
 import { WatchlistItem } from '../components/WatchlistItem'
 
-interface WatchlistPageProps {
-  onMarkWatched: (id: string) => void
-}
-
-export function WatchlistPage({ onMarkWatched }: WatchlistPageProps) {
+export function WatchlistPage() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -40,7 +36,7 @@ export function WatchlistPage({ onMarkWatched }: WatchlistPageProps) {
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <WatchlistItem movie={movie} onMarkWatched={onMarkWatched} />
+            <WatchlistItem movie={movie} onWatched={fetchMovies} />
           </li>
         ))}
       </ul>

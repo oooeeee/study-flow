@@ -5,6 +5,8 @@ import { WatchlistPage } from './WatchlistPage'
 vi.mock('../api/client', () => ({
   listMovies: vi.fn(),
   addMovie: vi.fn(),
+  markWatched: vi.fn(),
+  rateMovie: vi.fn(),
 }))
 
 import { listMovies, addMovie } from '../api/client'
@@ -43,7 +45,7 @@ describe('WatchlistPage', () => {
 
   it('fetches and renders planned movies', async () => {
     mockListMovies.mockResolvedValue(movies)
-    render(<WatchlistPage onMarkWatched={() => {}} />)
+    render(<WatchlistPage />)
 
     await waitFor(() => {
       expect(screen.getByText('Inception (2010)')).toBeInTheDocument()
@@ -54,7 +56,7 @@ describe('WatchlistPage', () => {
 
   it('shows empty state when no movies', async () => {
     mockListMovies.mockResolvedValue([])
-    render(<WatchlistPage onMarkWatched={() => {}} />)
+    render(<WatchlistPage />)
 
     await waitFor(() => {
       expect(screen.getByText('No movies in watchlist')).toBeInTheDocument()
@@ -63,30 +65,29 @@ describe('WatchlistPage', () => {
 
   it('shows error when fetch fails', async () => {
     mockListMovies.mockRejectedValue(new Error('Network error'))
-    render(<WatchlistPage onMarkWatched={() => {}} />)
+    render(<WatchlistPage />)
 
     await waitFor(() => {
       expect(screen.getByRole('alert')).toHaveTextContent('Failed to load watchlist')
     })
   })
 
-  it('calls onMarkWatched with movie id when Mark as watched clicked', async () => {
+  it('shows rate modal when Mark as watched clicked', async () => {
     mockListMovies.mockResolvedValue(movies)
-    const onMarkWatched = vi.fn()
-    render(<WatchlistPage onMarkWatched={onMarkWatched} />)
+    render(<WatchlistPage />)
 
     await waitFor(() => {
       expect(screen.getAllByRole('button', { name: 'Mark as watched' })).toHaveLength(2)
     })
 
     fireEvent.click(screen.getAllByRole('button', { name: 'Mark as watched' })[0])
-    expect(onMarkWatched).toHaveBeenCalledWith('1')
+    expect(screen.getByRole('dialog', { name: 'Rate movie' })).toBeInTheDocument()
   })
 
   it('refetches list after adding a movie', async () => {
     mockListMovies.mockResolvedValue(movies)
     mockAddMovie.mockResolvedValue({ id: '3', title: 'Matrix', year: 1999, status: 'planned' })
-    render(<WatchlistPage onMarkWatched={() => {}} />)
+    render(<WatchlistPage />)
 
     await waitFor(() => {
       expect(screen.getByText('Inception (2010)')).toBeInTheDocument()
