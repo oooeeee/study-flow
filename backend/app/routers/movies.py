@@ -6,7 +6,7 @@ from sqlmodel import Session, select
 
 from app.database import get_session
 from app.models import Movie, MovieStatus, utc_now
-from app.schemas import MovieCreate, MovieRead, RateRequest, WatchRequest
+from app.schemas import MovieCreate, MovieRead, RateRequest
 
 router = APIRouter(prefix="/movies", tags=["movies"])
 

@@ -16,10 +16,6 @@ export interface AddMovieRequest {
   year?: number | null;
 }
 
-export interface WatchRequest {
-  // empty request body
-}
-
 export interface RateRequest {
   rating: number;
   review?: string | null;

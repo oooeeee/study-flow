@@ -7,7 +7,6 @@ from sqlmodel.pool import StaticPool
 
 from app.database import get_session
 from app.main import app
-from app.models import MovieStatus
 
 
 @pytest.fixture(name="session")
@@ -97,8 +96,8 @@ def test_list_movies_filter_by_status_planned(client: TestClient):
     """Test filtering movies by planned status."""
     # Create movies
     movie1 = client.post("/movies", json={"title": "Movie 1"}).json()
-    movie2 = client.post("/movies", json={"title": "Movie 2"}).json()
-    movie3 = client.post("/movies", json={"title": "Movie 3"}).json()
+    client.post("/movies", json={"title": "Movie 2"})
+    client.post("/movies", json={"title": "Movie 3"})
 
     # Mark one as watched
     client.patch(f"/movies/{movie1['id']}/watch")
