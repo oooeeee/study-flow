@@ -112,10 +112,10 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 7: Frontend — API client & types
 
-- [ ] create `frontend/src/api/types.ts` — TypeScript interfaces mirroring backend schemas (`Movie`, `MovieStatus`, `AddMovieRequest`, `RateMovieRequest`)
-- [ ] create `frontend/src/api/client.ts` — typed fetch functions: `addMovie`, `listMovies`, `markWatched`, `rateMovie`, `deleteMovie`; base URL from `VITE_API_URL` env var (default `http://localhost:8000`)
-- [ ] write unit tests for client (mock fetch, verify correct URL + method + body for each function)
-- [ ] run `npm run test` — must pass
+- [x] create `frontend/src/api/types.ts` — TypeScript interfaces mirroring backend schemas (`Movie`, `MovieStatus`, `AddMovieRequest`, `RateMovieRequest`)
+- [x] create `frontend/src/api/client.ts` — typed fetch functions: `addMovie`, `listMovies`, `markWatched`, `rateMovie`, `deleteMovie`; base URL from `VITE_API_URL` env var (default `http://localhost:8000`)
+- [x] write unit tests for client (mock fetch, verify correct URL + method + body for each function)
+- [x] run `npm run test` — must pass
 
 ---
 
