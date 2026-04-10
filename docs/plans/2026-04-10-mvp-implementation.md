@@ -121,11 +121,11 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 8: Frontend — Watchlist view (planned movies)
 
-- [ ] create `frontend/src/components/AddMovieForm.tsx` — controlled form with title + year fields, calls `addMovie` on submit, clears on success
-- [ ] create `frontend/src/components/WatchlistItem.tsx` — shows title/year, "Mark as watched" button
-- [ ] create `frontend/src/pages/WatchlistPage.tsx` — fetches `?status=planned`, renders `AddMovieForm` + list of `WatchlistItem`
-- [ ] write component tests: form renders, submit calls API; list renders items; "Mark as watched" button triggers callback
-- [ ] run `npm run test` — must pass
+- [x] create `frontend/src/components/AddMovieForm.tsx` — controlled form with title + year fields, calls `addMovie` on submit, clears on success
+- [x] create `frontend/src/components/WatchlistItem.tsx` — shows title/year, "Mark as watched" button
+- [x] create `frontend/src/pages/WatchlistPage.tsx` — fetches `?status=planned`, renders `AddMovieForm` + list of `WatchlistItem`
+- [x] write component tests: form renders, submit calls API; list renders items; "Mark as watched" button triggers callback
+- [x] run `npm run test` — must pass
 
 ---
 
