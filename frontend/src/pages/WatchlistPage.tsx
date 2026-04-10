@@ -3,11 +3,14 @@ import { listMovies } from '../api/client';
 import type { Movie } from '../api/types';
 import { AddMovieForm } from '../components/AddMovieForm';
 import { WatchlistItem } from '../components/WatchlistItem';
+import { RateMovieModal } from '../components/RateMovieModal';
 
 export function WatchlistPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchMovies = async () => {
     setIsLoading(true);
@@ -30,10 +33,21 @@ export function WatchlistPage() {
     setMovies([newMovie, ...movies]);
   };
 
-  const handleMarkWatched = async (movieId: string) => {
-    // Remove from planned list when marked as watched
-    setMovies(movies.filter((m) => m.id !== movieId));
-    // Optionally refetch to ensure sync
+  const handleMarkWatched = (movie: Movie) => {
+    setSelectedMovie(movie);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedMovie(null);
+  };
+
+  const handleModalSave = async (ratedMovie: Movie) => {
+    // Remove from planned list
+    setMovies(movies.filter((m) => m.id !== ratedMovie.id));
+    handleModalClose();
+    // Refetch to ensure sync
     await fetchMovies();
   };
 
@@ -65,6 +79,16 @@ export function WatchlistPage() {
           ))}
         </div>
       </section>
+
+      {selectedMovie && (
+        <RateMovieModal
+          movie={selectedMovie}
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          onSave={handleModalSave}
+          isLoading={isLoading}
+        />
+      )}
     </div>
   );
 }

@@ -47,18 +47,18 @@ describe('WatchlistItem', () => {
     const button = screen.getByRole('button', { name: /mark as watched/i });
     fireEvent.click(button);
 
-    expect(onMarkWatched).toHaveBeenCalledWith('123');
+    expect(onMarkWatched).toHaveBeenCalledWith(mockMovie);
   });
 
-  it('should pass correct movie ID to onMarkWatched', () => {
+  it('should pass correct movie to onMarkWatched', () => {
     const onMarkWatched = vi.fn();
-    const customMovie = { ...mockMovie, id: 'custom-id-456' };
+    const customMovie = { ...mockMovie, id: 'custom-id-456', title: 'The Matrix' };
     render(<WatchlistItem movie={customMovie} onMarkWatched={onMarkWatched} />);
 
     const button = screen.getByRole('button', { name: /mark as watched/i });
     fireEvent.click(button);
 
-    expect(onMarkWatched).toHaveBeenCalledWith('custom-id-456');
+    expect(onMarkWatched).toHaveBeenCalledWith(customMovie);
   });
 
   it('should disable button when isLoading is true', () => {

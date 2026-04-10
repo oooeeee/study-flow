@@ -131,10 +131,10 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 9: Frontend — Rate Movie modal
 
-- [ ] create `frontend/src/components/RateMovieModal.tsx` — appears after "Mark as watched" click; rating picker (1–10), optional review textarea, Save/Cancel buttons; calls `markWatched` then `rateMovie`
-- [ ] integrate modal into `WatchlistItem` (show on button click, refetch list on save)
-- [ ] write component tests: modal renders with correct props; save calls API with rating; cancel closes without API call
-- [ ] run `npm run test` — must pass
+- [x] create `frontend/src/components/RateMovieModal.tsx` — appears after "Mark as watched" click; rating picker (1–10), optional review textarea, Save/Cancel buttons; calls `markWatched` then `rateMovie`
+- [x] integrate modal into `WatchlistItem` (show on button click, refetch list on save)
+- [x] write component tests: modal renders with correct props; save calls API with rating; cancel closes without API call
+- [x] run `npm run test` — must pass
 
 ---
 

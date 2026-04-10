@@ -2,13 +2,13 @@ import type { Movie } from '../api/types';
 
 interface WatchlistItemProps {
   movie: Movie;
-  onMarkWatched?: (movieId: string) => void;
+  onMarkWatched?: (movie: Movie) => void;
   isLoading?: boolean;
 }
 
 export function WatchlistItem({ movie, onMarkWatched, isLoading = false }: WatchlistItemProps) {
   const handleMarkWatched = () => {
-    onMarkWatched?.(movie.id);
+    onMarkWatched?.(movie);
   };
 
   return (

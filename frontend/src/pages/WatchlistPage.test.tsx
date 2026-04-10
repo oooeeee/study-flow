@@ -7,6 +7,7 @@ vi.mock('../api/client', () => ({
   listMovies: vi.fn(),
   addMovie: vi.fn(),
   markWatched: vi.fn(),
+  rateMovie: vi.fn(),
 }));
 
 const mockPlannedMovie = {
@@ -115,10 +116,14 @@ describe('WatchlistPage', () => {
     });
   });
 
-  it('should refetch movies after marking as watched', async () => {
+  it('should open modal and refetch movies after rating', async () => {
+    const ratedMovie = { ...mockPlannedMovie, status: 'watched' as const, rating: 8, watched_at: '2026-04-10T12:00:00Z' };
+
     vi.mocked(client.listMovies)
       .mockResolvedValueOnce([mockPlannedMovie])
       .mockResolvedValueOnce([]); // After marking watched, no more planned movies
+    vi.mocked(client.markWatched).mockResolvedValueOnce(ratedMovie);
+    vi.mocked(client.rateMovie).mockResolvedValueOnce(ratedMovie);
 
     render(<WatchlistPage />);
 
@@ -129,9 +134,23 @@ describe('WatchlistPage', () => {
     const markButton = screen.getByRole('button', { name: /mark as watched/i });
     fireEvent.click(markButton);
 
+    // Modal should open
     await waitFor(() => {
+      expect(screen.getByText('Rate Movie')).toBeInTheDocument();
+    });
+
+    // Select rating
+    const ratingBtn = screen.getByRole('button', { name: '8' });
+    fireEvent.click(ratingBtn);
+
+    // Save
+    const saveBtn = screen.getByRole('button', { name: /save rating/i });
+    fireEvent.click(saveBtn);
+
+    await waitFor(() => {
+      expect(client.markWatched).toHaveBeenCalledWith('123');
+      expect(client.rateMovie).toHaveBeenCalledWith('123', { rating: 8, review: null });
       expect(client.listMovies).toHaveBeenCalledTimes(2);
-      expect(client.listMovies).toHaveBeenCalledWith('planned');
     });
   });
 
