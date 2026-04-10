@@ -65,12 +65,12 @@ SQLite (database), all wired together with Docker Compose.
 
 ### Task 3: Backend — SQLite database & Movie model
 
-- [ ] create `backend/app/config.py`: Pydantic `BaseSettings` class with `db_path` (default `/app/data/movies.db`) and `app_env` fields — reads from env vars automatically
-- [ ] create `backend/app/database.py`: SQLModel engine built from `settings.db_path`; `create_db_and_tables()` called on startup
-- [ ] create `backend/app/models.py`: `MovieStatus` enum (`planned`/`watched`) and `Movie` SQLModel table with all fields from the MVP data model
-- [ ] wire `create_db_and_tables()` into FastAPI `lifespan` in `main.py`
-- [ ] write test: DB creates the `movie` table and a `Movie` instance can be inserted and retrieved
-- [ ] run `uv run pytest` — must pass
+- [x] create `backend/app/config.py`: Pydantic `BaseSettings` class with `db_path` (default `/app/data/movies.db`) and `app_env` fields — reads from env vars automatically
+- [x] create `backend/app/database.py`: SQLModel engine built from `settings.db_path`; `create_db_and_tables()` called on startup
+- [x] create `backend/app/models.py`: `MovieStatus` enum (`planned`/`watched`) and `Movie` SQLModel table with all fields from the MVP data model
+- [x] wire `create_db_and_tables()` into FastAPI `lifespan` in `main.py`
+- [x] write test: DB creates the `movie` table and a `Movie` instance can be inserted and retrieved
+- [x] run `uv run pytest` — must pass
 
 ---
 
